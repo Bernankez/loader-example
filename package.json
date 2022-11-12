@@ -51,6 +51,8 @@
   },
   "devDependencies": {
     "@bernankez/eslint-config": "^0.0.4",
+    "@esbuild-kit/cjs-loader": "^2.4.0",
+    "@esbuild-kit/esm-loader": "^2.5.0",
     "@types/node": "^18.7.19",
     "@vue/compiler-sfc": "^3.2.44",
     "bumpp": "^8.2.1",

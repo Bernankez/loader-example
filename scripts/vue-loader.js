@@ -14,8 +14,13 @@ export async function resolve(specifier, context, defaultResolver) {
   return resolved;
 }
 
-export function load(url, context, defaultLoad) {
-  if (context.format === "vue") {
+export async function load(url, context, defaultLoad) {
+  const loaded = await defaultLoad(url, context, defaultLoad);
+
+  if (!loaded.source)
+    return loaded;
+
+  if (loaded.format === "vue") {
     const source = fs.readFileSync(fileURLToPath(url), "utf-8");
 
     const sfc = parse(source);
@@ -36,5 +41,5 @@ export function load(url, context, defaultLoad) {
       source: code,
     };
   }
-  return defaultLoad(url, context, defaultLoad);
+  return loaded;
 }
